@@ -33,13 +33,10 @@ Tags
 
 ## Changelog
 
-#### v1.0
-Extension from [improved extension](https://github.com/jan0991/github-actions-full-datetime)
-
-#### v1.1
+#### v1.2
 Initial release
 
-#### v1.2
+#### v1.2.1
 - some bugfixes
 
 #### v1.3
