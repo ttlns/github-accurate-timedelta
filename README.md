@@ -28,7 +28,21 @@ Tags
   <img src="static/screenshot_tags_dark.png" alt="Tags screenshot" width="100%">
 </picture>
 
+## Changelog
 
+#### v1.0
+Extension from [improved extension](https://github.com/jan0991/github-actions-full-datetime)
+
+#### v1.1
+Initial release
+
+#### v1.2
+- some bugfixes
+
+#### v1.3
+Added support for
+- gitlab.com
+- codeberg.org
 
 ## References
 - The [original extension](https://github.com/jan0991/github-actions-full-datetime)

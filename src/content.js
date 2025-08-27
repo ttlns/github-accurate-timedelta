@@ -1,3 +1,5 @@
+const ElemSelector = "relative-time:not(.full-time-updated), time:not(.full-time-updated), button[data-testid='issuable-timestamp']:not(.full-time-updated)"
+
 function formatTimeDelta(pastDate) {
   const now = new Date();
   let delta = Math.floor((now - pastDate) / 1000); // in seconds
@@ -39,11 +41,11 @@ function formatTimeDelta(pastDate) {
 
 function updateRunTimeDisplay() {
   const timeElements = document.querySelectorAll(
-    "relative-time:not(.full-time-updated)"
+    ElemSelector
   );
 
-  timeElements.forEach((el) => {
-    const fullTime = el.getAttribute("datetime");
+  timeElements.forEach((el) => {                    // for gitlab, August 10, 2025 at 2:06:14 AM GMT+2
+    const fullTime = el.getAttribute("datetime") || el.getAttribute("aria-label").replace(' at ', ' ');
     if (!fullTime) return;
     const date = new Date(fullTime);
     const niceDate = date.toLocaleString("en-US", {
@@ -56,7 +58,11 @@ function updateRunTimeDisplay() {
     });
     const timeAgo = formatTimeDelta(date).trim();
 
-    const replacement = document.createElement("span");
+    let elType = "span"
+    if(el.tagName == "BUTTON"){
+      elType = "button"
+    }
+    const replacement = document.createElement(elType);
     replacement.textContent = timeAgo;
     replacement.title = niceDate;
 
@@ -81,8 +87,7 @@ function observeDOMChanges() {
         for (const node of mutation.addedNodes) {
           if (node.nodeType === Node.ELEMENT_NODE) {
             if (
-              node.matches("relative-time") ||
-              node.querySelector?.("relative-time")
+              node.matches(ElemSelector) || node.querySelector?.(ElemSelector)
             ) {
               shouldUpdate = true;
               break;
@@ -106,7 +111,7 @@ function observeDOMChanges() {
   });
 }
 
-if (window.location.href.match(/^https:\/\/github\.com\/.*$/)) {
+if (window.location.href.match(/^https:\/\/(github\.com|codeberg\.org|gitlab\.com)\/.*$/)) {
   updateRunTimeDisplay(); // Needed for refresh on `actions` page
   observeDOMChanges();
 }
