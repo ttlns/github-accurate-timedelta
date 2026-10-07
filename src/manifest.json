@@ -9,7 +9,7 @@
   "permissions": [],
   "content_scripts": [
     {
-      "matches": ["https://github.com/*","https://codeberg.org/*","https://gitlab.com/*"],
+      "matches": ["https://github.com/*","https://codeberg.org/*","https://gitlab.com/*", "https://gitlab.ethz.ch"],
       "js": ["content.js"],
       "css": ["content.css"]
     }
