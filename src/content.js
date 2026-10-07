@@ -111,7 +111,7 @@ function observeDOMChanges() {
   });
 }
 
-if (window.location.href.match(/^https:\/\/(github\.com|codeberg\.org|gitlab\.com)\/.*$/)) {
+if (window.location.href.match(/^https:\/\/(github\.com|codeberg\.org|gitlab\.com|gitlab\.ethz\.ch)\/.*$/)) {
   updateRunTimeDisplay(); // Needed for refresh on `actions` page
   observeDOMChanges();
 }
