@@ -45,7 +45,7 @@ function updateRunTimeDisplay() {
   );
 
   timeElements.forEach((el) => {                    // for gitlab, August 10, 2025 at 2:06:14 AM GMT+2
-    const fullTime = el.getAttribute("datetime") || el.getAttribute("aria-label").replace(' at ', ' ');
+    const fullTime = el.getAttribute("datetime") || (el.getAttribute("aria-label") && el.getAttribute("aria-label").replace(' at ', ' ')) || (el.shadowRoot && el.shadowRoot.textContent);
     if (!fullTime) return;
     const date = new Date(fullTime);
     const niceDate = date.toLocaleString("en-US", {
